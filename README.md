@@ -1,17 +1,11 @@
-<<<<<<< HEAD
-# MolF-DAEs
-=======
 # MolF-DAEs
 ## Molecular-substructure deep autoencoders cluster biomolecules into novel substructure-distinguished bioactivity-relevant band-shaped clusters in three-dimensional latent space
 
 
-😄Note! This repository is theoretically suitable for 3D clustering and undistorted visualization of any one-hot encoded high-dimensional data.
+😄Note! This repository is theoretically suitable for 3D clustering and undistorted visualization of any one-hot encoded high-dimensional data. 
 
--该资源库适用于对任何one-hot编码的高维数据进行三维聚类和不失真可视化。
 
-Please refer to our paper for more detailed information: ___
-
-![image](https://github.com/xxx)
+![image](./figure1.png)
 
 ### Introduction
 
@@ -46,7 +40,7 @@ ___
 ### 2. Training with 3D-DAEs
 Here you can replace with your dataset. Features will be first flattened into one-dimensional vectors.
 ####    1. Generate molecular fingerprint data
-* [Example for Molecular Fingerprint Feature Maps based on MolMap.](../code/feature_extraction.ipynb)
+* [Example for Molecular Fingerprint Feature Maps based on MolMap.](./code/feature_extraction.ipynb)
 
 
 ```py
@@ -114,6 +108,8 @@ dump(X3, '../result/pubchemfp/test1_best_pubchem/1-200000')
 ### 3. Visualization of Molecular Coordinate Mapping
 Generate standard coordinate files and label files adapted to Chempack. 
 
+
+![image](./bands.png)
 ####    1. MolF-DAEs into 3D Space.
 Coordinate Generation and Label Generation.
 
@@ -128,11 +124,8 @@ with open('/raid/wx_home/learning/2_190w_model_new/pubchem_experiment_compari/UM
         f.write((str(line[1])+'\t'+str(line[2])+'\t'+str(line[3])+'\n')) 
 ```
 
-
-    This method produces files in formation that can be put directly into ChemPack software for visualisation. The extraction method is described in Software. 
+This method produces files in formation that can be put directly into ChemPack software for visualisation. The extraction method is described in Software. 
 
 ####    2. 128-Dimension Feature from PubChemFP DAEs with PCA/UMAP visualization.
 * [Example for DAEs & PCA](https://github.com/../code/PCA.ipynb)
 * [Example for UMAP & DAEs](https://github.com/../code/UMAP.ipynb)
-
->>>>>>> 初始提交：添加 molf-daes 文件夹
