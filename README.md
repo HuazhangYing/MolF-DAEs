@@ -1,20 +1,20 @@
 # MolF-DAEs
-## Molecular-substructure deep autoencoders cluster biomolecules into novel substructure-distinguished bioactivity-relevant band-shaped clusters in three-dimensional latent space
+## Molecular-substructure deep autoencoders cluster biomolecules into novel substructure-distinguished band-shaped clusters in three-dimensional latent space
 
 
 😄Note! This repository is theoretically suitable for 3D clustering and undistorted visualization of any one-hot encoded high-dimensional data. 
 
-
-![image](./figure1.png)
-
 ### Introduction
 
 
-This repository is for reproducing the data processing steps in MolF-DAEs, extracting (x,y,z) coordinates and clustering visualization for customized datasets. 
+This repository is for reproducing the data processing steps in MolF-DAEs, extracting (x,y,z) coordinates and clustering visualization for customized datasets.
 
-Chempack is a self-developed high-quality large sample 3D imaging software: https://github...
+Related source in our paper: 
+- Software: Chempack is a self-developed high-quality large sample 3D imaging software.
 
-The example provided here is three sets of 1.9 million molecular fingerprint vectors. Labels including experimental varified target types in ChEMBL.
+- 1.9 million processed data: https://drive.google.com/drive/folders/1oPpz3biogeAEoa9-RydxdLDBcZQd-6o6?usp=drive_link
+
+![image](./figure1.png)
 
 ### 1. Requirement
 
@@ -31,15 +31,16 @@ tensorflow-gpu      2.9.1
 scikit-learn        0.24
 ```
 
-or Clone the current repo.
+or clone the current repo.
 
-    git clone https://github.com/../molf-daes.git
+    git clone https://github.com/HuazhangYing/MolF-DAEs.git
     conda env create -f environment.yml
 
 ___
 ### 2. Training with 3D-DAEs
 Here you can replace with your dataset. Features will be first flattened into one-dimensional vectors.
-####    1. Generate molecular fingerprint data
+![image](./fingerprint.png)
+####    a. Generate molecular fingerprint data
 * [Example for Molecular Fingerprint Feature Maps based on MolMap.](./code/feature_extraction.ipynb)
 
 
@@ -65,7 +66,7 @@ X1 = mp2.batch_transform([smiles1, smiles2])
 dump(X2, '../dataset/test_chembl.data2')
 ```
 
-####    2. Training of molecular fingerprint data
+####    b. Training of molecular fingerprint data
 * [Example for PubChemFP MolF-DAEs.](https://github.com/...test1_best.ipynb)
 * [Example for MACCSFP MolF-DAEs.](https://github.com/.../test9_1_best.ipynb)
 * [Example for PharmacoPFP MolF-DAEs.](https://github.com/.../test1_1_best.ipynb)
@@ -77,7 +78,6 @@ from joblib import load, dump
 import matplotlib.pyplot as plt
 import pandas as pd
 
-sys.path.append('../') 
 X1 = load('../dataset/test_chembl.data2')
 
 model, history1, history2 = create_and_train_model(X1)
@@ -110,7 +110,7 @@ Generate standard coordinate files and label files adapted to Chempack.
 
 
 ![image](./bands.png)
-####    1. MolF-DAEs into 3D Space.
+####    a. MolF-DAEs into 3D Space.
 Coordinate Generation and Label Generation.
 
 ```py
@@ -118,14 +118,16 @@ import os
 X3 = load('../result/comparison/PCA/2-pca/1-200000')
 df1 = pd.DataFrame(X3, columns=list('XYZ'))
 df.to_csv('../result/comparison/PCA/PCA_2_ME.csv')
-data = pd.read_csv('/raid/wx_home/learning/2_190w_model_new/pubchem_experiment_compari/UMAP_2/UMAP_2_ME.csv', encoding='utf-8')
-with open('/raid/wx_home/learning/2_190w_model_new/pubchem_experiment_compari/UMAP_2/UMAP_2_190w_3d_data3.txt','a+', encoding='utf-8') as f:
+data = pd.read_csv('../result/comparison/UMAP/UMAP_2_ME.csv', encoding='utf-8')
+with open('../result/comparison/UMAP/UMAP_2_190w_3d_data3.txt','a+', encoding='utf-8') as f:
     for line in data.values:
         f.write((str(line[1])+'\t'+str(line[2])+'\t'+str(line[3])+'\n')) 
 ```
 
-This method produces files in formation that can be put directly into ChemPack software for visualisation. The extraction method is described in Software. 
+Files in formation that can be put directly into ChemPack software for visualisation.  
 
-####    2. 128-Dimension Feature from PubChemFP DAEs with PCA/UMAP visualization.
+####    b. 128-Dimension Feature from PubChemFP DAEs with PCA/UMAP visualization.
 * [Example for DAEs & PCA](https://github.com/../code/PCA.ipynb)
 * [Example for UMAP & DAEs](https://github.com/../code/UMAP.ipynb)
+
+![image](./UMAP-noother.png)
