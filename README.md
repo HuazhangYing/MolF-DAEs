@@ -2,7 +2,7 @@
 ## Molecular-substructure deep autoencoders cluster biomolecules into novel substructure-distinguished band-shaped clusters in three-dimensional latent space
 
 
-😄Note! This repository is theoretically suitable for 3D clustering and undistorted visualization of any one-hot encoded high-dimensional data. 
+😄 This repository is theoretically suitable for 3D clustering and undistorted visualization of any one-hot encoded high-dimensional data. 
 
 ### Introduction
 
@@ -67,9 +67,9 @@ dump(X2, '../dataset/test_chembl.data2')
 ```
 
 ####    b. Training of molecular fingerprint data
-* [Example for PubChemFP MolF-DAEs.](https://github.com/...test1_best.ipynb)
-* [Example for MACCSFP MolF-DAEs.](https://github.com/.../test9_1_best.ipynb)
-* [Example for PharmacoPFP MolF-DAEs.](https://github.com/.../test1_1_best.ipynb)
+* [Example for PubChemFP MolF-DAEs.](https://github.com/HuazhangYing/MolF-DAEs/blob/main/code/molf-dae-pubchemfp/test1_best.ipynb)
+* [Example for MACCSFP MolF-DAEs.](https://github.com/HuazhangYing/MolF-DAEs/blob/main/code/molf-dae-maccsfp/test9_1_best.ipynb)
+* [Example for PharmacoPFP MolF-DAEs.](https://github.com/HuazhangYing/MolF-DAEs/blob/main/code/molf-dae-pharmacopfp/test1_1_best.ipynb)
 
 ```py
 import sys
@@ -127,7 +127,7 @@ with open('../result/comparison/UMAP/UMAP_2_190w_3d_data3.txt','a+', encoding='u
 Files in formation that can be put directly into ChemPack software for visualisation.  
 
 ####    b. 128-Dimension Feature from PubChemFP DAEs with PCA/UMAP visualization.
-* [Example for DAEs & PCA](https://github.com/../code/PCA.ipynb)
-* [Example for UMAP & DAEs](https://github.com/../code/UMAP.ipynb)
+* [Example for DAEs & PCA](https://github.com/HuazhangYing/MolF-DAEs/blob/main/code/PCA.ipynb)
+* [Example for UMAP & DAEs](https://github.com/HuazhangYing/MolF-DAEs/blob/main/code/UMAP.ipynb)
 
 ![image](./UMAP-noother.png)
