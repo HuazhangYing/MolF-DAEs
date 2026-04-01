@@ -1,0 +1,117 @@
+{
+  "feature_groups": {
+    "maccsfp": {
+      "display_name": "MACCSFP",
+      "reference_notebook": "/data/yinghuazhang/MolF-DAEs/code/molf-dae-maccsfp/test9_1_best.ipynb",
+      "latent_source": {
+        "type": "single_file",
+        "path": "/data/yinghuazhang/MolF-DAEs/result/maccsfp/test9-3D/latent_vectors.joblib",
+        "latent_dim": 3,
+        "note": "当前工作区未发现 maccsfp 版预计算 128D comparison latent，暂保留旧来源。"
+      },
+      "training_summary_path": "/data/yinghuazhang/MolF-DAEs/result/maccsfp/test9-3D/summary.csv"
+    },
+    "pubchemfp": {
+      "display_name": "PubChemFP",
+      "reference_notebook": "/data/yinghuazhang/MolF-DAEs/code/molf-dae-pubchemfp/test1_best.ipynb",
+      "latent_source": {
+        "type": "chunk_dir",
+        "dir": "/data/yinghuazhang/MolF-DAEs/result/comparison/1-pubchem",
+        "latent_dim": 128,
+        "chunk_pattern": "*",
+        "chunk_naming": "start-end_inclusive_start_exclusive_end",
+        "note": "对齐 PCA.ipynb，直接复用 AE-128D latent 分块结果。"
+      },
+      "training_summary_path": null
+    },
+    "pharmacopfp": {
+      "display_name": "PharmacoPFP",
+      "reference_notebook": "/data/yinghuazhang/MolF-DAEs/code/molf-dae-pharmacopfp/test1_1_best.ipynb",
+      "latent_source": {
+        "type": "single_file",
+        "path": "/data/yinghuazhang/MolF-DAEs/result/pharmachopfp/test9-3D/latent_vectors.joblib",
+        "latent_dim": 3,
+        "note": "当前工作区未发现 pharmacopfp 版预计算 128D comparison latent，暂保留旧来源。"
+      },
+      "training_summary_path": "/data/yinghuazhang/MolF-DAEs/result/pharmachopfp/test9-3D/summary.csv"
+    },
+    "mol2vec": {
+      "display_name": "Mol2vec",
+      "reference_notebook": "/data/yinghuazhang/MolF-DAEs/code/control-review/3.benchmark/run_mol2vec_3d.py",
+      "latent_source": {
+        "type": "single_file",
+        "path": "/data/yinghuazhang/MolF-DAEs/code/control-review/result/3.benchmark/mol2vec/embeddings_full/embeddings.npy",
+        "file_format": "npy",
+        "index_ids_path": "/data/yinghuazhang/MolF-DAEs/code/control-review/result/3.benchmark/mol2vec/embeddings_full/valid_row_ids.npy",
+        "latent_dim": 300,
+        "note": "复用 mol2vec 300D embedding；benchmark 子集在有效分子集合上抽样，并通过 valid_row_ids 映射回原始 CSV 行号。"
+      },
+      "training_summary_path": "/data/yinghuazhang/MolF-DAEs/code/control-review/result/3.benchmark/mol2vec/embeddings_full/embedding_summary.csv"
+    }
+  },
+  "subset_policy": {
+    "seed": 20260320,
+    "sizes": {
+      "100k": 100000,
+      "300k": 300000,
+      "1m": 1000000
+    }
+  },
+  "runtime": {
+    "projector_random_state": 42
+  },
+  "methods": {
+    "pacmap3d": {
+      "n_neighbors": [
+        10,
+        20
+      ],
+      "MN_ratio": [
+        0.5
+      ],
+      "FP_ratio": [
+        2.0
+      ],
+      "distance": [
+        "euclidean",
+        "cosine"
+      ],
+      "apply_pca": [
+        false
+      ],
+      "init": [
+        "pca"
+      ]
+    },
+    "phate3d": {
+      "knn": [
+        5,
+        15,
+        30
+      ],
+      "decay": [
+        40
+      ],
+      "gamma": [
+        1
+      ],
+      "t": [
+        "auto"
+      ],
+      "n_landmark": [
+        2000
+      ],
+      "distance": [
+        "euclidean",
+        "cosine"
+      ]
+    },
+    "gtm3d": {
+      "reserved_subsets": [
+        "100k",
+        "300k",
+        "1m"
+      ]
+    }
+  }
+}
